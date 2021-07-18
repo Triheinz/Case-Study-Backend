@@ -3,15 +3,15 @@ const Order = require('../models/Order.model');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  Order.find()
-    .then(orders => res.status(200).json(orders))
+  Order.find({order:req.order.id})
+    .then((orders) => res.status(200).json(orders))
     .catch((err) => res.status(500).json(err));
 });
 
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Order.findOne({ _id: id, order: req.order.id })
-    .then((order) => res.status(200).json(order))
+    .then((Order) => res.status(200).json(Order))
     .catch((err) => res.status(500).json(err));
 });
 
@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
       products,
       orderState,
       country,
-      order:req.order.id
+
     })
     .then((Order) => res.status(200).json(Order))
     .catch((err) => res.status(500).json(err));
