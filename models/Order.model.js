@@ -3,14 +3,15 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema(
   {
-    id: { type: Number, required: true, unique: true },
-    date: { type: String },
+    number: { type: Number},
+    date: { type: Date, default:Date.now() },
     clientName: { type: Schema.Types.ObjectId, ref: 'Client' },
     products: [{ type: String }],
     orderState: {
       type: String,
-      enum: ['Requested', 'Processing', 'Delivered'],
+      enum: ['Acepted', 'Processing'],
     },
+    country: { type: String },
   },
   {
     timestamps: true,

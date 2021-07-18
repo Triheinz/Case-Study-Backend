@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect(process.env.MONGODB_URL, {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  .connect(`${process.env.DBURL}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .catch(err => {
-    console.error('Error connecting to mongo', err)
-  });
+  .then(() => console.log('Connected to Mongo!'))
+  .catch((error) => console.error(error));
+
+module.exports = mongoose;
