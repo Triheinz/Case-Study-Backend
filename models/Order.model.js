@@ -9,7 +9,7 @@ const orderSchema = new Schema(
     products: [{ type: String }],
     orderState: {
       type: String,
-      enum: ['Acepted', 'Processing'],
+      enum: ['Accepted', 'Processing'],
     },
     country: { type: String },
   },
