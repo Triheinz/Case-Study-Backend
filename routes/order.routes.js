@@ -15,7 +15,7 @@ router.get('/:id', (req, res, next) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.post('/', (req, res, next) => {
+router.post('/createOrder', (req, res, next) => {
   const { number, date, clientName, products, orderState, country} = req.body;
 
   Order.create({
