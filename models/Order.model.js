@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema(
   {
-    number: { type: Number},
-    date: { type: Date, default:Date.now() },
-    clientName: { type: Schema.Types.ObjectId, ref: 'Client' },
+    number: { type: Number },
+    date: { type: Date, default: Date.now() },
+    clientName: { type: String },
+    clientLastName: { type: String },
+    clientAddress: { type: String },
     products: [{ type: String }],
     orderState: {
       type: String,
