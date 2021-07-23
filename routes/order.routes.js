@@ -15,14 +15,16 @@ router.post('/createOrder', (req, res, next) => {
     number,
     date,
     clientName,
+    clientLastName,
+    clientAddress,
     products,
     orderState,
-    country
+    country,
   })
     .then((Order) => res.status(200).json(Order))
     .catch((err) => {
       console.log(err);
-      return res.status(500).json(err)
+      return res.status(500).json(err);
     });
 })
 
