@@ -8,6 +8,24 @@ router.get('/', (req, res, next) => {
     .catch((err) => res.status(500).json(err));
 });
 
+router.post('/createOrder', (req, res, next) => {
+  const { number, date, clientName, products, orderState, country } = req.body;
+  console.log(req.body);
+  Order.create({
+    number,
+    date,
+    clientName,
+    products,
+    orderState,
+    country
+  })
+    .then((Order) => res.status(200).json(Order))
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err)
+    });
+})
+
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Order.findOne({ _id: id})
@@ -15,22 +33,7 @@ router.get('/:id', (req, res, next) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.post('/createOrder', (req, res, next) => {
-  const { number, date, clientName, products, orderState, country} = req.body;
 
-  Order.create({
-      number,
-      date,
-      clientName,
-      products,
-      orderState,
-      country,
-
-    })
-    .then((Order) => res.status(200).json(Order))
-    .catch((err) => res.status(500).json(err));
-
-});
 
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
